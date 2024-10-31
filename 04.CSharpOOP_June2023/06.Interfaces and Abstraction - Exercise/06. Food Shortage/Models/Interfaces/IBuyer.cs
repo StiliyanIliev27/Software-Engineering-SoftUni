@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace P04.BorderControl.Models.Interfaces
+{
+    public  interface IBuyer
+    {
+        public int Food { get; }
+        public bool BuyFood(string name);
+    }
+}
