@@ -1,0 +1,89 @@
+﻿@using BookingSystem.Core.Models.User
+@using Microsoft.AspNetCore.Identity
+@using BookingSystem.Core.Constants;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    string username = string.Empty;
+
+    if(SignInManager.IsSignedIn(User))
+    {
+        string userId = User.GetUserId();
+        var user = await UserManager.FindByIdAsync(userId);
+
+        username = $"{user.FirstName} {user.LastName}";
+    }
+}
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{      
+    <li class="nav-item dropdown">
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                My Verifications
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item" asp-controller="Hotel" asp-action="Verify">Hotel verifications</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-controller="Flight" asp-action="Verify">Flight verifications</a>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li class="nav-item dropdown">
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">
+                My Reservations
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item" asp-controller="Hotel" asp-action="AllReservations">Hotel reservations</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-controller="Flight" asp-action="MyReservations">Flight reservations</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-controller="Landmark" asp-action="MyReservations">Landmark reservations</a>
+                </li>        
+            </ul>
+        </div>
+    </li>
+        
+    <li class="nav-item">
+        <a  class="nav-link text-dark" title="Manage">Hello @username!</a>
+    </li>
+        
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var user = await UserManager.FindByIdAsync(User.GetUserId());
+        
+        @if (await UserManager.IsInRoleAsync(user, AdministratorConstants.AdminRole))
+        {
+             <li class="nav-item">
+                 <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Management">Admin Area</a>
+             </li>
+        }
+    }
+        
+    <li class="nav-item">
+       <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+       </form>
+    </li>
+}
+else
+{    
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+}
+</ul>

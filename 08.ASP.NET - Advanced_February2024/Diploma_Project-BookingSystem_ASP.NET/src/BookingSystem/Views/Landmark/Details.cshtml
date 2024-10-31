@@ -1,0 +1,62 @@
+﻿@using BookingSystem.Core.Constants
+@using BookingSystem.Core.Models.User
+@using Microsoft.AspNetCore.Identity
+
+@model LandmarkDetailsViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var user = await UserManager.FindByIdAsync(User.GetUserId());
+}
+
+<div class="row">
+    <div class="col-md-7 d-flex align-items-stretch">
+        <div class="flex-column">
+            <div>
+                <h2 class="text-center">@Model.Name</h2>
+            </div>
+            <div class="card mt-3 w-100">
+                <div class="card-body">
+                    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                        <h3 class="card-title mb-4">About</h3>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            @if (await UserManager.IsInRoleAsync(user, AdministratorConstants.AdminRole))
+                            {
+                                <a asp-area="Admin" asp-controller="Landmark" asp-action="All" style="height: 40%;" class="btn btn-primary">All Landmarks</a>
+                            }
+                        }    
+                    </div>
+                    <p style="font-style: italic;">
+                        <span style="font-weight: bold;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Address:
+                        </span> @Model.Address
+                    </p>
+                    <p class="card-text">@Model.Details</p>
+                    <hr />
+                    @if(Model.TicketPrice > 0)
+                    {
+                        <div class="d-flex flex-row justify-content-between">
+                            <small class="fw-bold">Admission tickets</small>
+                            <h4>from $@Model.TicketPrice</h4>
+                        </div>
+                        <a asp-controller="Landmark" asp-action="Reserve" asp-route-id="@Model.Id" style="margin-top: 10px; width: 100%; border-radius: 20px; font-weight: bold;" class="btn btn-warning">Reserve</a>                        
+                    }
+                    else
+                    {
+                        <div class="d-flex flex-row justify-content-between">
+                            <small class="fw-bold">Admission tickets</small>
+                            <h4>Free entry</h4>
+                        </div>                        
+                        <button style="margin-top: 10px; width: 100%; border-radius: 20px; font-weight: bold;" type="button" class="btn btn-warning disabled">Reserve</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 d-flex align-items-stretch">
+        <img style="border-radius: 10px;" class="img-fluid w-100" src="@Model.ImageUrl" alt="Landmark image" />
+    </div>
+</div>

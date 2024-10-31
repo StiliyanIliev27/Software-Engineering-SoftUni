@@ -1,0 +1,81 @@
+﻿@using BookingSystem.Core.Constants
+@using BookingSystem.Core.Models.User
+@using Microsoft.AspNetCore.Identity
+
+@model HotelServiceModel
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    List<string> types = new List<string>();
+
+    var user = await UserManager.FindByIdAsync(User.GetUserId());
+}
+
+<div class="col-lg-4 mb-3">
+    <div class="card mb-3 h-100">
+        <div class="row g-0">
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <img style="margin-left: 15px;" src="@Model.ImageUrl" class="img-fluid rounded" alt="hotel image">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Name</h5>
+                    <span>
+                        @for (int i = 1; i <= @Model.StarRate; i++)
+                        {
+                            <img src="~/icon/star.png" class="star-icon" />
+                        }
+                    </span>
+
+                    <br />
+
+                    <a asp-controller="City" asp-action="Details" asp-route-id="@Model.CityId" style="text-decoration: underline;">@Model.CityName</a>
+
+                    @foreach (var type in Model.RoomsTypes)
+                    {
+                        types.Add(type.Type);
+                    }
+
+                    <p>Rooms: <span class="room-types">@string.Join(", ", types)</span></p>
+
+                    <div style="display: flex; flex-direction: row; justify-content: space-between; width: 240px;">                                   
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            @if (await UserManager.IsInRoleAsync(user, AdministratorConstants.AdminRole))
+                            {
+                                <a style="width: 100%; margin-right: 10px;" asp-area="Admin" asp-controller="Hotel" asp-action="Edit" asp-route-id="@Model.Id"
+                                   class="btn btn-warning">Edit</a>
+
+                                <br />
+
+                                <form method="post" asp-area="Admin" asp-controller="Hotel" asp-action="Delete" asp-route-id="@Model.Id">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+
+                            }
+                        }
+
+                    </div>
+                    
+                    <a style="width: 100%;" asp-controller="Hotel" asp-action="Details" asp-route-id="@Model.Id"
+                       asp-route-information="@Model.GetInformation()" class="btn btn-primary mt-3 h-50">See availability ></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .star-icon {
+        height: 12px;
+        width: 12px;
+    }
+
+    .room-types {
+        font-style: italic;
+        font-size: 15px;
+    }
+</style>
