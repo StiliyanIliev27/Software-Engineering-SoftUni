@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font: 14px/1.5 'Lato', sans-serif;
+}
+
+body, input, textarea, button{
+    font: inherit;
+}
+
+h1 { font-size: 2.4em; font-family: 'Montserrat'; }
+h2 { font-size: 2.0em; font-family: 'Montserrat'; }
+h3 { font-size: 1.8em; font-family: 'Montserrat'; }
+h4 { font-size: 1.4em; font-family: 'Montserrat'; }
+h5 { font-size: 1.2em; font-family: 'Montserrat'; }
+h6 { font-size: 1em; font-family: 'Montserrat'; }
+
+.site > header{
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    padding: 0.2em;
+}
+
+.site > header img{
+    width: 60px;
+    height: auto;
+    object-fit: cover;
+}
+
+.site > header ul{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.site > header ul li{
+    list-style-type: none;
+}
+
+.site > header ul li a{
+    text-decoration: none;
+    color: white;
+}
+
+.site > header ul li a:last-child{
+    margin-right: 1em;
+}
+
+.plans-container{
+    background-color: #1DB954;
+    padding: 2.5em;
+    position: relative;
+    min-height: max(10vh, 250px);
+}
+
+.plans-container > header h4{
+    text-align: center;
+    color: white;
+}
+
+.image-container{
+    position: absolute;
+    left: 0;
+    top: 3em;
+}
+
+.image-container img{
+    width: 550px;
+    height: auto;
+    display: block;
+}
+
+.articles-container{
+    display: flex;
+    gap: 10em;
+    margin-top: 3em;
+    justify-content: center;
+    position: absolute;
+    left: 28.5em;
+    top: 4em;
+}
+
+.articles-container article{
+    background-color: white;
+    position: relative;
+    max-width: 380px;
+    border: 0.3px solid black;
+    box-shadow: 0 0 1em 0 rgb(0,0,0,1);
+    border-radius: 0.5em;
+    overflow: hidden;
+}
+
+
+.articles-container article h4{
+    text-align: center;
+}
+
+.articles-container article ul{
+    display: block;
+    margin-left: 2em;
+    margin-top: 2em;
+}
+
+.articles-container article ul li{
+    list-style-type: circle;
+    margin-bottom: 0.3em;
+}
+
+.articles-container article .content-container header > h4,
+.articles-container article .content-container ul{
+    opacity: 0.7;
+}
+
+.articles-container button{
+    padding: 0.5em 2.5em;
+    border: none;
+    background-color: #1DB954;
+    color: white;
+    font-weight: bold;
+    border-radius: 3em;
+    margin: 1em 5em;
+}
+
+.articles-container button:hover{
+    cursor: pointer;
+}
+
+.articles-container article footer{
+    display: flex;
+    background-color: #191414;
+    color: white;
+    font-size: 1.2em;
+    padding: 0.7em;
+    gap: 1em;
+}
+
+.articles-container article footer > *{
+    flex: 1 0 55%;  
+}
+
+.articles-container article:nth-child(1) footer > p:nth-child(1)::after{
+    content: '';
+    height: 2em;
+    width: 0.5px;
+    background-color: #FFFFFF;
+    position: absolute;
+    bottom: 7px;
+    right: 11em;
+}
+
+.content-container{
+    padding: 1em;
+}
+
+.articles-container article:nth-child(2) footer {
+    text-align: center;
+}
+
+main{
+    margin-top: 22em;
+    padding-left: 5em;
+}
+
+main .info-container{
+    display: flex;
+    align-items: center;
+    gap: 10em;
+}
+
+.dog-image-container img{
+    width: 55%;
+    height: auto;
+    display: block;
+}
+
+main .info-container section > p:nth-child(1){
+    font-weight: bold;
+    font-size: 18px;
+}
+
+main .info-container ol{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+    margin-left: 1em;
+    max-width: 50em;
+}
+
+.table-container{
+    margin-top: 5em;
+    text-align: center;
+}
+
+.table-container header h1{
+    margin-bottom: 1rem;
+}
+
+table{
+    margin: 2em auto;
+    width: 950px;
+    align-items: start;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 0.3em;
+    overflow: hidden;
+}
+
+td{
+    padding: 0.4em;
+    text-align: start;
+}
+
+table tr:nth-child(even){
+    background-color: #81D8A0;
+}
+
+table tr:nth-child(odd){
+    background-color: #CCCBCB;
+}
+
+.footer{
+    background-color: black;
+    color: white;
+    padding: 1.8em;
+    text-align: center;
+    margin-top: 5em;
+}

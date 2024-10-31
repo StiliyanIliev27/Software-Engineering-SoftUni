@@ -1,0 +1,98 @@
+@media(max-width: 600px){
+    body{
+        width: 100%;
+    }
+
+    body > *{
+        width: 100%;
+    }
+
+    p{
+        font-size: 15px;
+    }
+
+    img{
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+    .choose-us {
+        padding: 0;
+    }
+
+    .choose-us ul{
+        padding: 2.5rem 8rem;
+        flex-direction: column;
+        gap: 2em;
+    }
+
+    .choose-us li{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-description{
+        padding: 2rem 2rem;
+    }
+
+    .about-us {
+        width: 100%;
+        padding: 2rem 2rem;
+    }
+
+    .team-description ul{
+        justify-content: unset;
+        gap: 70px;
+    }
+
+    .team-description-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        align-items: center;
+    }
+
+    .team-description ul li img {
+        width: 8rem;
+        height: auto;
+        display: block;
+    }
+
+    .team-description ul li{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header{
+        padding: 2rem;
+    }
+    
+    .header-title{
+        padding: 2rem;
+        padding-top: 1rem;
+        padding-bottom: 0.5rem;
+    } 
+
+    .header-title h1{
+        font-size: 30px;
+    }
+    
+    .header-title p {
+        font-size: 15px;
+    }
+
+    .header-title button {
+        font-size: 15px;
+    }
+
+    header nav ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.5em;
+    }
+}

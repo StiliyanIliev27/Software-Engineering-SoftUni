@@ -1,0 +1,24 @@
+{
+    "autorun": false,
+    "terminals": [
+        {
+            "name": "Problem",
+            "commands": ["clear"],
+            "focus": true,
+            "execute": false,
+            "icon": "browser",
+            "color": "terminal.ansiCyan"
+        },
+        {
+            "name": "Server",cd 
+            "commands": [
+                "cd server",
+                "clear",
+                "node server"
+            ],
+            "execute": false,
+            "icons": "server-process",
+            "color": "terminal.ansiMagenta"
+        }
+    ]
+}
